@@ -1,69 +1,93 @@
 
 /*Code de débug seulement */
 
-/* Ajoutez ici les styles pour le header */
+
+/* Styles généraux pour le corps de la page */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* En-tête */
 header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
 }
 
-/* Ajoutez ici les styles pour le logo */
+/* Logo */
 header img {
     max-width: 100%;
+    height: auto;
 }
 
-/* Ajoutez ici les styles pour la section "Description" */
+/* Sections */
+section {
+    margin-bottom: 30px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Description */
 section:nth-of-type(1) {
     background-color: #f8f9fa;
 }
 
-/* Ajoutez ici les styles pour la section "Personnalisation" */
+/* Personnalisation */
 section:nth-of-type(2) {
     background-color: #e9ecef;
 }
 
-/* Ajoutez ici les styles pour la vidéo */
 section:nth-of-type(2) iframe {
     width: 100%;
 }
 
-/* Ajoutez ici les styles pour le bouton "Ca m'intéresse" */
 section:nth-of-type(2) .btn-primary {
     display: block;
     margin-top: 1rem;
 }
 
-/* Ajoutez ici les styles pour la section "Nos programmes" */
+/* Nos programmes */
 section:nth-of-type(3) {
     background-color: #f8f9fa;
 }
 
-/* Ajoutez ici les styles pour l'image des programmes préconçus */
 section:nth-of-type(3) img {
     max-width: 100%;
+    height: auto;
 }
 
-/* Ajoutez ici les styles pour le bouton "Voir les programmes" */
 section:nth-of-type(3) .btn-primary {
     display: block;
     margin-top: 1rem;
 }
 
-/* Ajoutez ici les styles pour la section "S'inscrire" */
+/* S'inscrire */
 section:nth-of-type(4) {
     background-color: #e9ecef;
 }
 
-/* Ajoutez ici les styles pour le bouton "S'inscrire" */
 section:nth-of-type(4) .btn-primary {
     display: block;
     margin-top: 1rem;
 }
 
-/* Ajoutez ici les styles pour la section "Forum" */
+/* Forum */
 section:nth-of-type(5) {
     background-color: #f8f9fa;
+}
+
+/* Responsive pour les tablettes */
+@media (min-width: 768px) {
+    header {
+        padding: 20px;
+    }
+    section {
+        margin-bottom: 50px;
+        padding: 30px;
+    }
 }
