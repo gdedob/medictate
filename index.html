@@ -102,5 +102,29 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.2.3/js/bootstrap.min.js"></script>
+    
+<script>
+    // exemple de carousel généré par ChatGPT pour voi à quoi cela ressemblerait sur la page 
+    // Attend que le document soit prêt
+    $(document).ready(function () {
+        // Initialise le carrousel
+        $('#forumCarousel').carousel();
+
+        // Met à jour les indicateurs du carrousel lorsqu'une diapositive est changée
+        $('#forumCarousel').on('slid.bs.carousel', function () {
+            updateIndicators();
+        });
+
+        // Fonction pour mettre à jour les indicateurs du carrousel
+        function updateIndicators() {
+            var currentIndex = $('#forumCarousel .carousel-inner .active').index() + 1;
+            var totalItems = $('#forumCarousel .carousel-inner .carousel-item').length;
+            
+            // Mise à jour du texte de l'indicateur
+            $('#forumCarouselIndicatorsText').text(currentIndex + ' / ' + totalItems);
+        }
+    });
+</script>
+
 </body>
 </html>
