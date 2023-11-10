@@ -81,6 +81,31 @@ section:nth-of-type(5) {
     background-color: #f8f9fa;
 }
 
+/* Débug carrousel */
+
+/*  autour des éléments de la navigation */
+.navigation li {
+    border: 1px solid #ccc;
+    padding: 5px;
+}
+
+/*  bordure autour des images et des paragraphes */
+.content img, .content p {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+/* surbrillance élément actif */
+.navigation li.active {
+    background-color: #f0f0f0;
+}
+
+/* surbrillance l'image et le paragraphe actifs */
+.content img.active, .content p.active {
+    border-color: #ff0000;
+}
+
 /* Responsive pour les tablettes */
 @media (min-width: 768px) {
     header {
