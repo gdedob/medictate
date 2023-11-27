@@ -55,47 +55,6 @@
             </div>
         </section>
         
-        <section class="row mb-5">
-            <div class="col-md-6 mb-3 mb-md-0">
-                <h2>Derniers sujets du forum</h2>
-                <div id="forumCarousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-
-                              <div class="carousel-item active">
-                                  <h3>Sujet 1</h3>
-                                  <p>Description du sujet 1.</p>
-                              </div>
-                              <div class="carousel-item">
-                                  <h3>Sujet 2</h3>
-                                  <p>Description du sujet 2.</p>
-                              </div>
-                              <div class="carousel-item">
-                                  <h3>Sujet 3</h3>
-                                  <p>Description du sujet 3.</p>
-                              </div>
-                              <div class="carousel-item">
-                                  <h3>Sujet 4</h3>
-                                  <p>Description du sujet 4.</p>
-                              </div>
-                              <div class="carousel-item">
-                                  <h3>Sujet 5</h3>
-                                  <p>Description du sujet 5.</p>
-                              </div>
-                              </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div>
-                </div>
-            </div>
-        </section>
-    
     </main>
 
 
@@ -103,28 +62,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.2/js/bootstrap.min.js"></script>
     
-<script>
-    // exemple de carousel généré par ChatGPT pour voi à quoi cela ressemblerait sur la page 
-    // Attend que le document soit prêt
-    $(document).ready(function () {
-        // Initialise le carrousel
-        $('#forumCarousel').carousel();
-
-        // Met à jour les indicateurs du carrousel lorsqu'une diapositive est changée
-        $('#forumCarousel').on('slid.bs.carousel', function () {
-            updateIndicators();
-        });
-
-        // Fonction pour mettre à jour les indicateurs du carrousel
-        function updateIndicators() {
-            var currentIndex = $('#forumCarousel .carousel-inner .active').index() + 1;
-            var totalItems = $('#forumCarousel .carousel-inner .carousel-item').length;
-            
-            // Mise à jour du texte de l'indicateur
-            $('#forumCarouselIndicatorsText').text(currentIndex + ' / ' + totalItems);
-        }
-    });
-</script>
 
 </body>
 </html>
