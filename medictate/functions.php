@@ -31,3 +31,37 @@ function create_posttypes() {
     ]);
     }
 add_action('init', 'create_posttypes');
+
+// champs custom durée
+
+// Ajouter un méta champ pour la durée du programme
+function ajouter_duree() {
+    add_meta_box(
+        'duree_programme',
+        'Durée du programme',
+        'afficher_champ_duree_programme',
+        'progs',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'ajouter_duree');
+
+function afficher_duree($post) {
+    $duree_programme_value = get_post_meta($post->ID, 'duree_programme', true);
+    ?>
+    <label for="duree_programme">Durée du programme :</label>
+    <input type="text" id="duree_programme" name="duree_programme" value="<?php echo esc_attr($duree_programme_value); ?>">
+    <?php
+}
+
+function sauvegarder_duree($post_id) {
+    if (array_key_exists('duree_programme', $_POST)) {
+        update_post_meta(
+            $post_id,
+            'duree_programme',
+            sanitize_text_field($_POST['duree_programme'])
+        );
+    }
+}
+add_action('save_post', 'sauvegarder_duree');
