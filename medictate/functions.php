@@ -2,7 +2,11 @@
 
 add_theme_support( 'post-thumbnails' );
 add_theme_support( 'title-tag' );
+add_theme_support('menus');
 
+register_nav_menu('header', 'Entête du menu');
+
+// Charge les styles
 function wp_assets_loader() {
     wp_enqueue_style ('bootstrap', 
     'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
@@ -17,6 +21,23 @@ true);
 add_action('wp_enqueue_scripts', 'wp_assets_loader');
 
 
+//
+function montheme_menu_class($classes) {
+    // customizer classe des items (`li`)
+    $classes[] = 'nav-item';
+    return $classes;
+  }
+  function montheme_menu_link_class($attrs) {
+    // customizer classe des liens (`a`)
+    $attrs['class'] = 'nav-link';
+    return $attrs;
+  }
+  
+  add_filter('nav_menu_css_class', 'montheme_menu_class');
+  add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
+
+  
+//Custom post type
 function create_posttypes() {
     // Programmes
     register_post_type('progs', [
@@ -65,3 +86,46 @@ function sauvegarder_duree($post_id) {
     }
 }
 add_action('save_post', 'sauvegarder_duree');
+
+//Création d'utilisateur
+function inscription_process() {
+    $nom = sanitize_text_field($_POST['nom']);
+    $email = sanitize_email($_POST['email']);
+    $motdepasse = sanitize_text_field($_POST['motdepasse']);
+
+    // Vérifier si l'utilisateur existe déjà avec cet e-mail
+    if (email_exists($email)) {
+        $response = array(
+            'success' => false,
+            'message' => 'Cet adresse mail est déjà utilisée.'
+        );
+        wp_send_json($response);
+    }
+
+    // Créer un nouvel utilisateur
+    $userdata = array(
+        'user_login' => $nom,
+        'user_email' => $email,
+        'user_pass'  => $motdepasse,
+    );
+    
+    $user_id = wp_insert_user($userdata);
+
+    if (is_wp_error($user_id)) {
+        $response = array(
+            'success' => false,
+            'message' => 'Erreur lors de la création de l\'utilisateur. Veuillez réessayer.'
+        );
+        wp_send_json($response);
+    } else {
+        $response = array(
+            'success' => true,
+            'message' => 'Utilisateur créé avec succès !'
+        );
+        wp_send_json($response);
+    }
+}
+
+add_action('wp_ajax_inscription_process', 'inscription_process');
+add_action('wp_ajax_nopriv_inscription_process', 'inscription_process');
+
