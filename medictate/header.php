@@ -4,7 +4,7 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title> <?php bloginfo ('title'); ?> </title>
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/app.css">
+
     <?php wp_head(); ?>
 </head>
 
@@ -31,9 +31,13 @@
         'container' => false, // retire container
         'menu_class' => 'navbar-nav ms-auto' // classe dans <ul></ul>
       ]); ?>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+      <ul class="navbar-nav ms-auto">
+                    <?php if (is_user_logged_in()): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo wp_logout_url(); ?>">Déconnexion</a>
+                        </li>
+                    <?php endif; ?>
+                </ul>
       </form>
     </div>
   </div>
