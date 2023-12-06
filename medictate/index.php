@@ -3,11 +3,24 @@
 
 <main class="container my-5">
     
-        <section class="row mb-5">
-            <div class="col-md-6 mb-3 mb-md-0">
-                <h2>Description</h2>
-                <p>Medictate propose des programmes de méditation entièrement personnalisables.</p>
-            </div>
+        <div class="col-md-6 mb-3 mb-md-0">
+    <h2>Description</h2>
+
+    <?php
+    $article_id = 123; ?> <!-- Remplacer 123 par l'ID de l'article -->
+
+   <?php // Récupère les données de l'article
+    $article = get_post($article_id); ?>
+
+    <h3><?php if ($article) {
+       echo  esc_html($article->post_title); ?></h3>
+        
+   <article> <?php    // Affiche le contenu de l'article
+        echo '<div>' . apply_filters('the_content', $article->post_content); ?> </article>
+ <p> <?php  } else {
+        echo 'Aucun article trouvé';
+    } ?> </p>
+</div>
 
             <div class="col-md-6">
                 <h2>Personnalisation</h2>
