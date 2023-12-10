@@ -2,73 +2,90 @@
 
 
 <main class="container my-5">
+    <section class="col-md-6 mb-3 mb-md-0 order-md-first">
+        <h1 id="changingTitle"> Méditer pour décompresser</h1>
+        <p> Medictate offre des ambiances de méditation entièrement adaptées à vos besoins individuels.</p>
+        <div><a href="#" class="btn btn-primary">Lancer l'expérience</a></div> <!-- remplacer le lien par l'outil de personnalisation -->
+    </section>
     
-        <div class="col-md-6 mb-3 mb-md-0">
-    <h2>Description</h2>
+    <section class="col-md-6 mb-3 mb-md-0">
+        <h2>Les Paramètres</h2>
+        <?php
+        $SettingList = new WP_Query([
+            'post_type' => 'setting-expl',
+        ]);
+        ?>
+        <?php if ($SettingList->have_posts()): ?>
+            <ul>
+                <?php while ($SettingList->have_posts()): $SettingList->the_post(); ?>
+                    <li>
+                        <h3><?php the_title(); ?></h3>
+                        <?php the_post_thumbnail(); ?> <!-- Affiche la miniature de l'article -->
+                        <div class="content">
+                            <?php the_content(); ?> <!-- Affiche le contenu de l'article -->
+                        </div>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        <?php else: ?>
+            <h3>WIP</h3>
+        <?php endif; ?>
+    </section>
 
-    <?php
-    $article_id = 123; ?> <!-- Remplacer 123 par l'ID de l'article -->
-
-   <?php // Récupère les données de l'article
-    $article = get_post($article_id); ?>
-
-    <h3><?php if ($article) {
-       echo  esc_html($article->post_title); ?></h3>
-        
-   <article> <?php    // Affiche le contenu de l'article
-        echo '<div>' . apply_filters('the_content', $article->post_content); ?> </article>
- <p> <?php  } else {
-        echo 'Aucun article trouvé';
-    } ?> </p>
-</div>
-
-            <div class="col-md-6">
-                <h2>Personnalisation</h2>
-                <div class="ratio ratio-16x9 mb-3">
-                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0" title="Vidéo explicative"></iframe>
-                </div>
-                <a href="#" class="btn btn-primary">Ça m'intéresse</a>
-            </div>
-        </section>
-
-        <section class="row mb-5">
-            <div class="col-md-6 mb-3 mb-md-0 order-md-last">
-                <h2>Nos programmes</h2>
-                <img src="programmes.jpg" alt="Programmes préconçus" class="img-fluid">
-                
-                <?php
+    <section class="row mb-5">
+        <div class="col-md-6 mb-3 mb-md-0 order-md-last">
+            <h2>Essayez Wedictate</h2>
+            <?php
+            if (is_user_logged_in()) {
                 $ProgsList = new WP_Query([
                     'post_type' => 'progs',
+                    'posts_per_page' => 3,
                 ]);
-                ?>
-
-                <?php if ($ProgsList->have_posts()): ?>
+                if ($ProgsList->have_posts()): ?>
                     <ul>
-                        <?php while($ProgsList->have_posts()): $ProgsList->the_post(); ?>
-                        <li>
-                            <?php the_title() ?> - <?php the_author(); ?>
-                            <a href="<?php the_permalink(); ?>">Découvrir le programme</a>
-                        </li>
+                        <?php while ($ProgsList->have_posts()): $ProgsList->the_post(); ?>
+                            <li>
+                                <?php the_title(); ?>
+                                <a href="<?php the_permalink(); ?>">Découvrir le programme</a>
+                            </li>
                         <?php endwhile; ?>
                     </ul>
                 <?php else: ?>
                     <h3>WIP</h3>
-                <?php endif; ?>
-                
-            </div>
-            
-            <div class="col-md-6 order-md-first">
-                <a href="#" class="btn btn-primary">Voir les programmes</a>
-            </div>
-        </section>
+                <?php endif;
+            } else {
+                echo '<p>Créez votre compte et profitez d\'ambiances soigneusement conçues pour vous. Créez votre compte et testez nos ambiances vous permettant entre autres de mieux vous concentrer, gérer vos dépendances, ou encore même améliorer la qualité de votre sommeil.</p>';
+            }
+            ?>
+        </div>
+        <div>
+            <?php if (is_user_logged_in()) : ?>
+                <a class="btn btn-primary" href="#lien_de_la_page_progslist">S'inscrire</a>
+            <?php else : ?>
+                <a class="btn btn-primary" href="#lien_de_la_page_d'inscription">S'inscrire</a>
+            <?php endif; ?>
+        </div>
+    </section>
+</main>
 
-        <section class="row mb-5">
-            <div class="col-md-6 mb-3 mb-md-0">
-                <h2>S'inscrire</h2>
-                <a href="#" class="btn btn-primary btn-lg btn-block">S'inscrire</a>
-            </div>
-        </section>
-   
-    </main>
+    <script>
+    const titleElement = document.getElementById('changingTitle');
+    let words = titleElement.textContent.split(' '); // Divise la phrase en mots
+
+    let meditationWords = ['se calmer', 'mieux dormir', 'se recentrer', 'se concentrer', 'harmoniser']; // Mots en lien avec la méditation
+    let wordToChangeIndex = words.indexOf('décompresser'); // mot à changer
+
+    let index = 0;
+
+    function changeWord() {
+      if (wordToChangeIndex !== -1) { // Vérifie si le mot à changer a été trouvé
+        words[wordToChangeIndex] = meditationWords[index]; // Remplace le mot par un mot un autre
+        titleElement.textContent = words.join(' '); // Reconstruire la phrase avec le mot changé
+        index = (index + 1) % meditationWords.length; // Passer au mot suivant
+      }
+    }
+
+    setInterval(changeWord, 5000); // Appel changeWord toutes les 5 secondes (5000 millisecondes)
+  </script>     
 
 <?php get_footer(); ?>
