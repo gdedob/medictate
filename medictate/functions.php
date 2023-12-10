@@ -20,19 +20,20 @@ add_action('wp_enqueue_scripts','wp_assets_loader');
 
 
 //header
-function montheme_menu_class($classes) {
+function medictate_menu_class($classes) {
     // customizer classe des items (`li`)
     $classes[] = 'nav-item';
     return $classes;
   }
-  function montheme_menu_link_class($attrs) {
+
+function medictate_menu_link_class($attrs) {
     // customizer classe des liens (`a`)
     $attrs['class'] = 'nav-link';
     return $attrs;
   }
-  
-  add_filter('nav_menu_css_class', 'montheme_menu_class');
-  add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
+
+  add_filter('nav_menu_css_class', 'medictate_menu_class');
+  add_filter('nav_menu_link_attributes', 'medictate_menu_link_class');
 
   
 //Custom post type
@@ -99,12 +100,15 @@ function afficher_duree($post) {
     $duree_programme_value = get_post_meta($post->ID, 'duree_programme', true);
     ?>
     <label for="duree_programme">Durée du programme :</label>
-    <input type="text" id="duree_programme" name="duree_programme" value="<?php echo esc_attr($duree_programme_value); ?>">
+    <select id="duree_programme" name="duree_programme">
+        <option value="10" <?php selected($duree_programme_value, '10'); ?>>10 minutes</option>
+        <option value="20" <?php selected($duree_programme_value, '20'); ?>>20 minutes</option>
+        <option value="30" <?php selected($duree_programme_value, '30'); ?>>30 minutes</option>
+    </select>
     <?php
 }
-
 function sauvegarder_duree($post_id) {
-    if (array_key_exists('duree_programme', $_POST)) {
+    if (isset($_POST['duree_programme'])) {
         update_post_meta(
             $post_id,
             'duree_programme',
@@ -172,6 +176,32 @@ function form_inscription_shortcode() {
     return ob_get_clean();
 }
 add_shortcode('form_inscription', 'form_inscription_shortcode');
+
+//Shortcode connexion
+function custom_login_form() {
+    // Vérifie si l'utilisateur est déjà connecté
+    if (!is_user_logged_in()) {
+        ob_start(); ?>
+        <form id="login-form" action="<?php echo esc_url(site_url('wp-login.php', 'login_post')); ?>" method="post">
+            <div class="form-group">
+                <label for="username">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="username" name="log" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="pwd" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <input type="hidden" name="redirect_to" value="<?php echo esc_url(home_url('/')); ?>">
+        </form>
+        <?php
+        return ob_get_clean();
+    } else {
+        // Si l'utilisateur est déjà connecté, afficher un message
+        return 'Vous êtes déjà connecté.';
+    }
+}
+add_shortcode('custom_login', 'custom_login_form');
 
 
 //Création d'utilisateur
