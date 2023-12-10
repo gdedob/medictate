@@ -60,7 +60,7 @@
         </div>
         <div>
             <?php if (is_user_logged_in()) : ?>
-                <a class="btn btn-primary" href="#lien_de_la_page_progslist">S'inscrire</a>
+                <a class="btn btn-primary" href="#lien_de_la_page_progslist">Voir les programmes</a>
             <?php else : ?>
                 <a class="btn btn-primary" href="#lien_de_la_page_d'inscription">S'inscrire</a>
             <?php endif; ?>
