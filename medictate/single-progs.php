@@ -15,10 +15,20 @@
                             echo '<p> Durée du programme : ' . esc_html($duree_programme) . '</p>';
                         }
                         ?>
-
+                                
+                <div>
                         <!-- bouton pour commencer le programme -->
-                        <a href="<?php // rediriger vers la page associée au programme" ?>" class="btn btn-primary">
-                            <img src="chemin_vers_votre_image" alt="Nom de l'image">  Commencer le programme </a>
+        <?php
+        // Récupérer l'ID de la page associée au programme (à remplacer par l'ID réel)
+        $id_page_ambipreset= 123; // Remplace 123 par l'ID de la page d'ambiance preset'
+
+        // Construire le lien vers la page associée au programme avec l'ID de l'article en cours
+        $link_ambipreset = esc_url(get_permalink($id_page_programme) . '?article_id=' . get_the_ID());
+        ?> <!--- Ca redirige vers l'ambiance preset -->
+
+        <a href="<?php echo $link_ambipreset; ?>" class="btn btn-primary">
+            <img src="chemin_vers_votre_image" alt="Nom de l'image"> Commencer le programme
+        </a>
                         
 
                     </div>
