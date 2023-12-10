@@ -35,7 +35,19 @@ function medictate_menu_link_class($attrs) {
   add_filter('nav_menu_css_class', 'medictate_menu_class');
   add_filter('nav_menu_link_attributes', 'medictate_menu_link_class');
 
-  
+
+    //Custom page
+function custom_pages($templates) {
+    $templates['Wedictate'] = 'page-progslist.php';
+    $templates['Medictate'] = 'formulaire-ambiance.php';
+    $templates['Ambiance personnalisée'] = 'ambiance-perso.php';
+    $templates['Ambiance Préconçue'] = 'ambiance-preset.php';
+
+    return $templates;
+}
+add_filter('theme_page_templates', 'custom_pages');
+
+
 //Custom post type
 function create_posttypes() {
     // Programmes
