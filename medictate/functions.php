@@ -48,6 +48,17 @@ function create_posttypes() {
         'rewrite' => ['slug' => 'progs'],
         'show_in_rest' => true,
     ]);
+      // Explication paramètres
+     register_post_type('setting-expl', [
+        'labels' => [
+            'name' => __( 'Paramètres' ),
+            'singular_name' => __( 'Paramètres' )
+        ],
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => ['slug' => 'setting-expl'],
+        'show_in_rest' => true,
+    ]);
     }
 add_action('init', 'create_posttypes');
 
