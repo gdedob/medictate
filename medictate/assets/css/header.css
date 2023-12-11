@@ -1,0 +1,29 @@
+/* Header transparent */
+.header {
+    background-color: transparent !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Logo */
+header img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styles des liens dans la barre de navigation */
+.navbar-nav .nav-item .nav-link {
+    color: #BF6A8C; /* Couleur par défaut des liens */
+    transition: 0.3s ease; /* Transition pour l'animation */
+    text-decoration: none; /* Retirer soulignement par défaut */
+}
+
+/* Couleur rose pour les liens au survol */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #BF6A8C; /* Couleur rose */
+    text-decoration: underline; /* Soulignement au survol */
+}
