@@ -8,23 +8,6 @@ body {
     line-height: 1.6;
 }
 
-/* En-tête */
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #ffffff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-/* Logo */
-header img {
-    max-width: 100%;
-    height: auto;
-}
-
 /* Sections */
 section {
     margin-bottom: 30px;
