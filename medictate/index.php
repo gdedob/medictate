@@ -20,7 +20,7 @@
                 <?php while ($SettingList->have_posts()): $SettingList->the_post(); ?>
                     <li>
                         <h3><?php the_title(); ?></h3>
-                        <?php the_post_thumbnail(); ?> <!-- Affiche la miniature de l'article -->
+                        <?php the_post_thumbnail('thumbnail'); ?> <!-- Affiche la miniature de l'article -->
                         <div class="content">
                             <?php the_content(); ?> <!-- Affiche le contenu de l'article -->
                         </div>
