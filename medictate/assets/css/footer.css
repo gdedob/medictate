@@ -1,0 +1,18 @@
+/* Footer avec fond de couleur */
+footer {
+    background-color: #BF6A8C; /* Couleur de fond */
+    color: white; /* Couleur du texte par défaut */
+}
+
+/* Styles des liens dans le footer */
+footer a {
+    color: white; /* Couleur du lien par défaut */
+    text-decoration: none; /* Retirer le soulignement par défaut */
+    transition: color 0.3s ease; /* Transition pour l'animation */
+}
+
+/* Couleur du lien au survol */
+footer a:hover {
+    color: white; /* Couleur du lien au survol */
+    text-decoration: underline; /* Soulignement au survol */
+}
