@@ -100,7 +100,7 @@ function ajouter_duree() {
     add_meta_box(
         'duree_programme',
         'Durée du programme',
-        'afficher_champ_duree_programme',
+        'afficher_duree',
         'progs',
         'normal',
         'default'
