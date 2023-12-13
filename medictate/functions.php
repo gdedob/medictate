@@ -75,6 +75,7 @@ function create_posttypes() {
     }
 add_action('init', 'create_posttypes');
 
+
 //Tag programmes
 function progs_tags_taxonomy() {
     $labels = array(
@@ -93,9 +94,9 @@ function progs_tags_taxonomy() {
 add_action('init', 'progs_tags_taxonomy');
 
 
+//meta champs custom
+//meta champs durée
 
-// champs custom durée
-// Ajouter un méta champ pour la durée du programme
 function ajouter_duree() {
     add_meta_box(
         'duree_programme',
@@ -107,6 +108,60 @@ function ajouter_duree() {
     );
 }
 add_action('add_meta_boxes', 'ajouter_duree');
+
+function afficher_duree($post) {
+    $duree_programme_value = get_post_meta($post->ID, 'duree_programme', true);
+    ?>
+    <label for="duree_programme">Durée du programme :</label>
+    <select id="duree_programme" name="duree_programme">
+        <option value="10" <?php selected($duree_programme_value, '10'); ?>>10 minutes</option>
+        <option value="20" <?php selected($duree_programme_value, '20'); ?>>20 minutes</option>
+        <option value="30" <?php selected($duree_programme_value, '30'); ?>>30 minutes</option>
+    </select>
+    <?php
+}
+function sauvegarder_duree($post_id) {
+    if (isset($_POST['duree_programme'])) {
+        update_post_meta(
+            $post_id,
+            'duree_programme',
+            sanitize_text_field($_POST['duree_programme'])
+        );
+    }
+}
+add_action('save_post', 'sauvegarder_duree');
+
+//méta champs catégorie
+function ajouter_categorie() {
+    add_meta_box(
+        'categorie_programme',
+        'Catégorie',
+        'afficher_categorie',
+        'progs',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'ajouter_categorie');
+
+function afficher_categorie($post) {
+    $categorie_programme_value = get_post_meta($post->ID, 'categorie_programme', true);
+    ?>
+    <label for="categorie_programme">Catégorie :</label>
+    <input type="text" id="categorie_programme" name="categorie_programme" value="<?php echo esc_attr($categorie_programme_value); ?>">
+    <?php
+}
+
+function sauvegarder_categorie($post_id) {
+    if (isset($_POST['categorie_programme'])) {
+        update_post_meta(
+            $post_id,
+            'categorie_programme',
+            sanitize_text_field($_POST['categorie_programme'])
+        );
+    }
+}
+add_action('save_post', 'sauvegarder_categorie');
 
 function afficher_duree($post) {
     $duree_programme_value = get_post_meta($post->ID, 'duree_programme', true);
