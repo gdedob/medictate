@@ -75,12 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $randomVideoKey = array_rand($selectedPlaylist);
         $randomVideoID = $selectedPlaylist[$randomVideoKey];    
 
-        // Affichage des vidéos de la playlist sélectionnée
-        foreach ($selectedPlaylist as $videoID) {
             // Affichage de la vidéo aléatoire
     echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $randomVideoID . '" frameborder="0" allowfullscreen></iframe>';
         }
     }
-}
 ?>
 <?php get_footer(); ?>
