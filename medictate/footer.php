@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/footer.css">
 <footer>
     <div class="container">
         <div class="row">
@@ -6,14 +7,14 @@
                 <div class="footer-column">
                     <!-- Logo avec slogan -->
                     <img src="chemin/vers/votre/logo.png" alt="Logo">
-                    <p>Votre slogan ici</p>
+                    <p>You Dictate. We Create.</p>
                     
                     <!-- Lien vers les mentions légales -->
                     <a href="lien-vers-mentions-legales">Mentions légales</a>
                     
-                    <!-- Adresse et adresse e-mail -->
-                    <p>Adresse de la société</p>
-                    <p>Email : contact@societe.com</p>
+               
+                    <p>108 Av de la Zenitude, 1000 Bruxelles  </p>
+                    <p>Email : contact@medictate.be</p>
                 </div>
             </div>
             
@@ -21,8 +22,8 @@
                 <!-- Colonne 2 -->
                 <div class="footer-column">
                     <!-- Liens vers les pages Wedictate et Medictate -->
-                    <a href="lien-vers-wedictate">Wedictate</a>
-                    <a href="lien-vers-medictate">Medictate</a>
+                    <a href="<?php echo esc_url(home_url('/programmes')); ?>">Wedictate</a>
+                    <a href="<?php echo esc_url(home_url('/formulaire-ambiance')); ?>">Medictate</a>
                 </div>
             </div>
             
@@ -30,8 +31,8 @@
                 <!-- Colonne 3 -->
                 <div class="footer-column">
                     <!-- Liens vers Contact, À propos et Contact -->
-                    <a href="lien-vers-contact">Contact</a>
-                    <a href="lien-vers-a-propos">À propos</a>
+                    <a href="<?php echo esc_url(home_url('/contact')); ?>">Contact</a>
+                    <a href="<?php echo esc_url(home_url('/about')); ?>">À propos</a>
                     <a href="lien-vers-reseaux-sociaux">Réseaux sociaux</a>
                 </div>
             </div>
