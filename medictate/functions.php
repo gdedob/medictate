@@ -185,6 +185,40 @@ function sauvegarder_duree($post_id) {
 }
 add_action('save_post', 'sauvegarder_duree');
 
+function ajouter_video() {
+    add_meta_box(
+        'video_programme',
+        'Ajouter une vidéo',
+        'afficher_video',
+        'progs',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'ajouter_video');
+
+//méta champs vidéo
+function afficher_video($post) {
+    $video_url = get_post_meta($post->ID, 'video_programme', true);
+    ?>
+    <label for="video_url">URL de la vidéo :</label>
+    <input type="text" id="video_url" name="video_url" value="<?php echo esc_attr($video_url); ?>">
+    <?php
+}
+
+function sauvegarder_video($post_id) {
+    if (isset($_POST['video_url'])) {
+        update_post_meta(
+            $post_id,
+            'video_programme',
+            esc_url($_POST['video_url'])
+        );
+    }
+}
+add_action('save_post', 'sauvegarder_video');
+
+
+
 //short code inscription
 function form_inscription_shortcode() {
     ob_start();
