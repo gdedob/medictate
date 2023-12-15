@@ -14,8 +14,8 @@
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid">
     <a class="navbar-brand mx-auto" href="<?php echo home_url('/'); ?>">
-      <img src="<?php echo get_template_directory_uri(); ?>/medictate/assets/img/logo_couleur.svg" alt="Logo Medictate" width="40" height="40">
-    </a>
+  <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo/logo.svg" alt="Logo Medictate" width=200 height=200>
+            </a>
     <a href="<?php echo esc_url( home_url( '/votre-page-dinscription' ) ); ?>"> <!-- Insérer lien réel page inscription-connexion -->
       <!-- Insérer icône pour l'inscription -->
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
