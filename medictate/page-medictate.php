@@ -68,16 +68,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 )
              );
 
-        // Sélection de la playlist correspondant aux choix de l'utilisateur (cahcune entre crochet, car chacune correspond à un array différent)
-        $selectedPlaylist = $playlists['stress']['nature']['10'];
+       // Sélection de la playlist correspondant aux choix de l'utilisateur (cahcune entre crochet, car chacune correspond à un array différent)
+      $selectedPlaylist = $playlists[$theme][$audio][$duree];
 
-        // Sélection aléatoire d'une vidéo dans la playlist (array_rand selctionne un élément aléatoire parmis selectedplaylist)
-        $randomVideoKey = array_rand($selectedPlaylist);
-        $randomVideoID = $selectedPlaylist[$randomVideoKey];    
+    // Mélanger aléatoirement la playlist
+    shuffle($selectedPlaylist);
 
-            // Affichage de la vidéo aléatoire
+    // Récupérer la première vidéo (après le mélange aléatoire)
+    $randomVideoID = $selectedPlaylist[0];  
+
+                // Affichage de la vidéo aléatoire
     echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $randomVideoID . '" frameborder="0" allowfullscreen></iframe>';
-        }
     }
-?>
+} ?>
 <?php get_footer(); ?>
