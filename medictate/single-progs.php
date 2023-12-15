@@ -14,6 +14,11 @@
                         if ($duree_programme) {
                             echo '<p> Durée du programme : ' . esc_html($duree_programme) . '</p>';
                         }
+                                
+        $CatProg = get_post_meta(get_the_ID(), 'categorie_programme', true);
+        if ($CatProg) {
+            echo '<p> Catégorie du programme : ' . esc_html($CatProg) . '</p>';
+        }
                         ?>
                                 
                 <div>
