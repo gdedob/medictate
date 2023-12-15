@@ -81,37 +81,12 @@
         <span class="error-message" id="visuel-error"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <input type="image" src="<?php echo get_template_directory_uri(); ?> \assets\img\logo\fleur_transp.svg" 
+    alt="Valider" class="btn btn-primary submit-button">
+</form>
 </form>
 
-
-
-
-
-<!-- traite les données envoyées via le formulaire -->
-
-    <!-- Validation des données (à adapter) -->
-    <?php if (empty($duree) || empty($theme) || empty($audio) || empty($visuel)) {
-        echo '<div class="alert alert-danger" role="alert">Tous les champs sont requis</div>';
-    } else { 
-        // Traite les données
-        echo "Thème sélectionné : " . $theme;
-        echo "Durée sélectionnée : " . $duree . " minutes";
-        echo "Audio : " . $audio;
-        echo "Visuel : " . $visuel;
-
-        // données pour créer l'ambiance de méditation demandée
-        // Par exemple, intégrer la vidéo et jouer la playlist
-        echo '<a href="lien_vers_ambiance_de_meditation"><img src="chemin_vers_image" alt="Bouton ambiance de méditation"></a>';
-
-        // Afficher les vidéos de la playlist sélectionnée (maintenant dans un ordre aléatoire)
-        foreach ($selectedPlaylist as $videoID) {
-            echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $videoID . '" frameborder="0" allowfullscreen></iframe>';
-        }
-    }
-    
-?>
-<script>
+<script> /*
     $(document).ready(function() {
         // Attend que le document soit chargé pour exécuter le code jQuery
         $('#myForm').submit(function(event) {
@@ -135,7 +110,51 @@
                 event.preventDefault(); // Empêche l'envoi du formulaire
             }
         });
-    })
+    }) */
+</script>
+
+
+<script>
+    $(document).ready(function() {
+        // Fonction pour vérifier si tous les champs requis sont remplis
+        function checkFormValidity() {
+            let isValid = true;
+
+            // Vérification pour chaque groupe de champs
+            const formGroups = [
+                'input[name="theme"]',
+                '#duree',
+                'input[name="audio"]',
+                'input[name="visuel"]'
+            ];
+
+            formGroups.forEach(function(selector) {
+                if ($(selector).filter(':checked').length === 0) {
+                    isValid = false;
+                    return false; // Sortir de la boucle si un champ est vide
+                }
+            });
+
+            return isValid;
+        }
+
+        // Fonction pour afficher le bouton avec animation ou le message d'erreur
+        function displayButtonOrError() {
+            if (checkFormValidity()) {
+                // Afficher le bouton avec une animation
+                $('.btn-primary').fadeIn().css('transform', 'rotate(360deg)');
+            } else {
+                // Afficher le message d'erreur
+                alert('Tous les champs sont requis');
+            }
+        }
+
+        // Cacher le bouton au chargement de la page
+        $('.btn-primary').hide();
+
+        // Vérifier lorsque les champs changent et appeler la fonction appropriée
+        $('input, #duree').on('change', displayButtonOrError);
+    });
 </script>
 
 
