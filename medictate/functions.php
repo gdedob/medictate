@@ -185,6 +185,7 @@ function sauvegarder_duree($post_id) {
 }
 add_action('save_post', 'sauvegarder_duree');
 
+// méta champs vidéo
 function ajouter_video() {
     add_meta_box(
         'video_programme',
@@ -197,7 +198,6 @@ function ajouter_video() {
 }
 add_action('add_meta_boxes', 'ajouter_video');
 
-//méta champs vidéo
 function afficher_video($post) {
     $video_url = get_post_meta($post->ID, 'video_programme', true);
     ?>
@@ -216,6 +216,38 @@ function sauvegarder_video($post_id) {
     }
 }
 add_action('save_post', 'sauvegarder_video');
+
+//méta champs visuel
+function ajouter_visuel() {
+    add_meta_box(
+        'visuel_programme',
+        'Type de visuel',
+        'afficher_visuel',
+        'progs',
+        'normal',
+        'default'
+    );
+}
+add_action('add_meta_boxes', 'ajouter_visuel');
+
+function afficher_visuel($post) {
+    $visuel_programme = get_post_meta($post->ID, 'visuel_programme', true);
+    ?>
+    <label for="visuel_programme">Visuel :</label>
+    <input type="text" id="visuel_programme" name="visuel_programme" value="<?php echo esc_attr($visuel_programme); ?>">
+    <?php
+}
+
+function sauvegarder_visuel($post_id) {
+    if (isset($_POST['visuel_programme'])) {
+        update_post_meta(
+            $post_id,
+            'visuel_programme',
+            sanitize_text_field($_POST['visuel_programme'])
+        );
+    }
+}
+add_action('save_post', 'sauvegarder_visuel');
 
 
 
