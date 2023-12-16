@@ -1,62 +1,78 @@
-<?php /*Template Name: Programmes */ get_header(); ?>
+<?php /* Template Name: Programmes */ 
+get_header();
 
-<?php
-// Initialisation des tableaux pour les catégories et durées
-$categories = array();
-$durations = array();
+// Initialisation des tableaux pour les catégories, durées et visuels
+$categories = $durations = $visuels = [];
 
-// Requête pour récupérer tous les articles du type 'progs'
-$progs_query = new WP_Query(array(
-    'post_type' => 'progs', // Spécifie le type de post 'progs'
-    'posts_per_page' => -1, // Récupère tous les articles
-));
+// Récupération des métadonnées pour chaque article 'progs'
+$progs_query = new WP_Query([
+    'post_type' => 'progs',
+    'posts_per_page' => -1,
+]);
 
-// Vérifie si des articles sont trouvés
 if ($progs_query->have_posts()) {
     while ($progs_query->have_posts()) {
         $progs_query->the_post();
 
-        // Récupère l'ID de l'article 'progs' actuel
+        // Récupération des valeurs pour chaque métadonnée
         $programme_id = get_the_ID();
-
-        // Récupère les valeurs pour 'categorie_programme' et 'duree_programme' pour chaque article
         $programme_categories = get_post_meta($programme_id, 'categorie_programme', true);
         $programme_durations = get_post_meta($programme_id, 'duree_programme', true);
+        $programme_visuels = get_post_meta($programme_id, 'visuel_programme', true);
 
-        // Ajoute les valeurs récupérées aux tableaux s'ils existent et ne sont pas déjà présentes
-        if (!empty($programme_categories) && !in_array($programme_categories, $categories)) {
-            $categories[] = $programme_categories;
-        }
-
-        if (!empty($programme_durations) && !in_array($programme_durations, $durations)) {
-            $durations[] = $programme_durations;
-        }
+        // Ajout des valeurs uniques aux tableaux correspondants
+        $categories[] = $programme_categories;
+        $durations[] = $programme_durations;
+        $visuels[] = $programme_visuels;
     }
-} ?>
+
+    // Retirer les doublons et les valeurs vides
+    $categories = array_unique(array_filter($categories));
+    $durations = array_unique(array_filter($durations));
+    $visuels = array_unique(array_filter($visuels));
+}
+
+?>
 
 <section class="container mt-5">
     <form method="get" class="row g-3">
-        <!-- Sélecteur pour filtrer par catégorie -->
-        <div class="col-md-6">
-            <select name="category_filter" class="form-select">
-                <option value="">Toutes les Catégories</option>
-                <?php foreach (array_unique($categories) as $category) : ?>
-                    <option value="<?php echo esc_attr($category); ?>"><?php echo esc_html($category); ?></option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+        <?php
+        // Tableau associatif pour les filtres avec leurs options
+        $filters = [
+            'category_filter' => [
+                'label' => 'Catégorie',
+                'options' => array_unique($categories),
+                'placeholder' => 'Toutes les Catégories',
+            ],
+            'duration_filter' => [
+                'label' => 'Durée',
+                'options' => array_unique($durations),
+                'placeholder' => 'Toutes les Durées',
+                'suffix' => ' minutes',
+            ],
+            'visuel_filter' => [
+                'label' => 'Visuel',
+                'options' => array_unique($visuels),
+                'placeholder' => 'Tous les Visuels',
+            ],
+        ];
+        ?>
 
-        <!-- Sélecteur pour filtrer par durée -->
-        <div class="col-md-6">
-            <select name="duration_filter" class="form-select">
-                <option value="">Toutes les Durées</option>
-                <?php foreach (array_unique($durations) as $duration) : ?>
-                    <option value="<?php echo esc_attr($duration); ?>"><?php echo esc_html($duration); ?> minutes</option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+        <?php  // Génère les sélecteurs de filtre
+        foreach ($filters as $filter_name => $filter_data) : ?>
+            <div class="col-md-6">
+                <select name="<?php echo esc_attr($filter_name); ?>" class="form-select">
+                    <option value=""><?php echo esc_html($filter_data['placeholder']); ?></option>
+                    <?php foreach ($filter_data['options'] as $option) : ?>
+                        <?php $value = esc_attr($option); ?>
+                        <?php $label = esc_html($option . ($filter_data['suffix'] ?? '')); ?>
+                        <option value="<?php echo $value; ?>"><?php echo $label; ?></option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+        <?php endforeach; ?>
 
-        <div>
+        <div class="col-md-12">
             <input type="submit" value="Filtrer" class="btn btn-primary">
         </div>
     </form>
@@ -69,19 +85,21 @@ $args = [
     'meta_query' => [], // Initialise le tableau pour les filtres de métadonnées
 ];
 
-// Ajout des filtres s'ils sont sélectionnés
-if (isset($_GET['category_filter']) && $_GET['category_filter'] !== '') {
-    $args['meta_query'][] = [
-        'key' => 'categorie_programme',
-        'value' => $_GET['category_filter'],
-    ];
-}
+// Liste des filtres disponibles et leurs clés de métadonnées correspondantes
+$filters = [
+    'category_filter' => 'categorie_programme',
+    'duration_filter' => 'duree_programme',
+    'visuel_filter' => 'visuel_programme',
+];
 
-if (isset($_GET['duration_filter']) && $_GET['duration_filter'] !== '') {
-    $args['meta_query'][] = [
-        'key' => 'duree_programme',
-        'value' => $_GET['duration_filter'],
-    ];
+// Ajout des filtres s'ils sont sélectionnés
+foreach ($filters as $filter => $meta_key) {
+    if (isset($_GET[$filter]) && $_GET[$filter] !== '') {
+        $args['meta_query'][] = [
+            'key' => $meta_key,
+            'value' => $_GET[$filter],
+        ];
+    }
 }
 
 $programmesList = new WP_Query($args);
