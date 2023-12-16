@@ -81,4 +81,64 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $randomVideoID . '" frameborder="0" allowfullscreen></iframe>';
     }
 } ?>
+
+<?php // Ajout des carrousels d'images pour chaque choix de 'visuel'
+
+// Récupérer le choix de 'visuel' depuis le formulaire
+$selectedVisuel = $_POST['visuel'];
+
+// Vérifier si le choix de 'visuel' existe dans les carrousels
+$template_directory_uri = get_template_directory_uri();
+
+// Définir le tableau avec les URL complètes des images
+$carousels = array(
+    'formes_geometriques' => array(
+        $template_directory_uri . '/assets/img/forme1.jpg', 
+        $template_directory_uri . '/assets/img/forme2.jpg', 
+        $template_directory_uri . '/assets/img/forme3.jpg'
+    ),
+    'paysages' => array(
+        $template_directory_uri . '/assets/img/paysage1.jpg', 
+        $template_directory_uri . '/assets/img/paysage2.jpg', 
+        $template_directory_uri . '/assets/img/paysage3.jpg'
+    ),
+    'zen' => array(
+        $template_directory_uri . '/assets/img/zen1.jpg', 
+        $template_directory_uri . '/assets/img/zen2.jpg', 
+        $template_directory_uri . '/assets/img/zen3.jpg'
+    )
+);
+
+// Récupérer le choix de 'visuel' depuis le formulaire
+$selectedVisuel = $_POST['visuel'];
+
+// Vérifier si le choix de 'visuel' existe dans les carrousels
+if (array_key_exists($selectedVisuel, $carousels)) {
+
+    $selectedCarousel = $carousels[$selectedVisuel];
+
+    // Affichage du carrousel Bootstrap avec contrôles automatiques
+    echo '<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">'; // Image change toutes les 5 secondes
+    echo '<div class="carousel-inner">';
+    $active = 'active'; // Définir la classe active pour la première image
+    
+    foreach ($selectedCarousel as $image) {
+        echo '<div class="carousel-item ' . $active . '" data-bs-interval="10000">';
+        echo '<img src="' . $image . '" class="d-block w-100" alt="Image">';
+        echo '</div>';
+    }
+    
+    echo '</div>';
+    echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">';
+    echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
+    echo '<span class="visually-hidden">Previous</span>';
+    echo '</button>';
+    
+    echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">';
+    echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
+    echo '<span class="visually-hidden">Next</span>';
+    echo '</button>';
+    echo '</div>'; 
+        }
+    ?>
 <?php get_footer(); ?>
