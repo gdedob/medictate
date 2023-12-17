@@ -118,27 +118,21 @@ if (array_key_exists($selectedVisuel, $carousels)) {
     $selectedCarousel = $carousels[$selectedVisuel];
 
     // Affichage du carrousel Bootstrap avec contrôles automatiques
-    echo '<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">'; // Image change toutes les 5 secondes
+
+    echo '<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">';
     echo '<div class="carousel-inner">';
-    $active = 'active'; // Définir la classe active pour la première image
     
-    foreach ($selectedCarousel as $image) {
-        echo '<div class="carousel-item ' . $active . '" data-bs-interval="10000">';
+    // Logique pour activer les images du carrousel une à une
+    $totalImages = count($selectedCarousel);
+    foreach ($selectedCarousel as $key => $image) {
+        $active = $key === 0 ? 'active' : ''; // Active seulement la première image au départ
+        
+        echo '<div class="carousel-item ' . $active . '">';
         echo '<img src="' . $image . '" class="d-block w-100" alt="Image">';
         echo '</div>';
     }
     
     echo '</div>';
-    echo '<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">';
-    echo '<span class="carousel-control-prev-icon" aria-hidden="true"></span>';
-    echo '<span class="visually-hidden">Previous</span>';
-    echo '</button>';
-    
-    echo '<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">';
-    echo '<span class="carousel-control-next-icon" aria-hidden="true"></span>';
-    echo '<span class="visually-hidden">Next</span>';
-    echo '</button>';
     echo '</div>'; 
-        }
-    ?>
+} ?>
 <?php get_footer(); ?>
