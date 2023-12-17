@@ -6,11 +6,11 @@
                 <!-- Colonne 1 -->
                 <div class="footer-column">
                     <!-- Logo avec slogan -->
-                    <img src="chemin/vers/votre/logo.png" alt="Logo">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo/logo_transp.svg" alt="Logo">
                     <p>You Dictate. We Create.</p>
                     
                     <!-- Lien vers les mentions légales -->
-                    <a href="lien-vers-mentions-legales">Mentions légales</a>
+                    <a href="<?php echo esc_url(home_url('/mentions-legales')); ?>">Mentions légales</a>
                     
                
                     <p>108 Av de la Zenitude, 1000 Bruxelles  </p>
@@ -26,7 +26,7 @@
                     <a href="<?php echo esc_url(home_url('/formulaire-ambiance')); ?>">Medictate</a>
                 </div>
             </div>
-            
+          
             <div class="col-md-4">
                 <!-- Colonne 3 -->
                 <div class="footer-column">
@@ -38,4 +38,4 @@
             </div>
         </div>
     </div>
-</footer>
+</footer
