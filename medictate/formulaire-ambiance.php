@@ -81,7 +81,8 @@
         <span class="error-message" id="visuel-error"></span>
     </div>
 
-    <input type="image" src="<?php echo get_template_directory_uri(); ?> \assets\img\logo\fleur_transp.svg" 
+
+    <input type="image" src="<?php echo get_template_directory_uri(); ?>/assets/img/ico/nav/icomedictate.svg" 
     alt="Valider" class="btn btn-primary submit-button">
 </form>
 </form>
