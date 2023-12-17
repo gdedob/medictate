@@ -8,9 +8,9 @@
 
             <p>Cette page semble méditer quelque part ailleurs... Retournez à la sérénité de l'accueil</p>
 
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn btn-primary">
-            Retour à l'accueil
-            </a>
+           <a class=btn-primary  href="<?php echo home_url('/'); ?>">
+                    <img src="<?php echo get_template_directory_uri(); ?>assets/img/ico/nav/icohome.svg" alt="Icone home" width=250 height=250>
+                </a>
         </div>
     </div>
 </div>
