@@ -39,10 +39,10 @@
                     <?php if (is_user_logged_in()): ?>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo wp_logout_url(); ?>">Déconnexion</a> <!-- affiche bouton déconnexion si connecté -->
+                                <a class="nav-link" href="<?php echo esc_url(home_url('/profil)')); ?>">Mon profil</a> <!-- affiche bouton profil si connecté -->
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo esc_url(home_url('/profil)')); ?>">Mon profil</a> <!-- affiche bouton profil si connecté -->
+                                <a class="nav-link" href="<?php echo wp_logout_url(); ?>">Déconnexion</a> <!-- affiche bouton déconnexion si connecté -->
                             </li>
                         </ul>
                     <?php else: ?>
