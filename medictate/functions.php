@@ -6,20 +6,20 @@ add_theme_support('menus');
 
 register_nav_menu('header', 'Entête du menu');
 
+
 // Charge les styles et les scripts
 function wp_assets_loader() {
+    wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
+    wp_enqueue_style('style', get_template_directory_uri() . '/assets/css/app.css', ['bootstrap'], '1.0.0', 'all');
 
-  wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css');
-  wp_enqueue_style('style', get_template_directory_uri() .'/assets/css/app.css', ['bootstrap'], true);
-
-  wp_enqueue_script('jquery');
-  wp_enqueue_script('bootstrap-bundle', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', false, '1.0.0', true);
-
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('bootstrap-bundle', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js', ['jquery'], '5.3.2', true);
+    wp_enqueue_script('script', get_template_directory_uri() . '/assets/script/js.js', ['bootstrap-bundle'], '1.0.0');
 }
-add_action('wp_enqueue_scripts','wp_assets_loader');
+add_action('wp_enqueue_scripts', 'wp_assets_loader');
 
 
-//header
+//header custom
 function medictate_menu_class($classes) {
     // customizer classe des items (`li`)
     $classes[] = 'nav-item';
@@ -36,17 +36,6 @@ function medictate_menu_link_class($attrs) {
   add_filter('nav_menu_link_attributes', 'medictate_menu_link_class');
 
 
-    //Custom page
-function custom_pages($templates) {
-    $templates['Wedictate'] = 'page-progslist.php';
-    $templates['Medictate'] = 'formulaire-ambiance.php';
-    $templates['Ambiance personnalisée'] = 'ambiance-perso.php';
-    $templates['Ambiance Préconçue'] = 'ambiance-preset.php';
-
-    return $templates;
-}
-add_filter('theme_page_templates', 'custom_pages');
-
 
 //Custom post type
 function create_posttypes() {
@@ -54,18 +43,20 @@ function create_posttypes() {
     register_post_type('progs', [
         'labels' => [
             'name' => __( 'Programmes' ),
-            'singular_name' => __( 'programmes' )
+            'singular_name' => __( 'Programme' )
         ],
         'public' => true,
         'has_archive' => true,
         'rewrite' => ['slug' => 'progs'],
         'show_in_rest' => true,
     ]);
-      // Explication paramètres
+
+
+    // Explication paramètres
      register_post_type('setting-expl', [
         'labels' => [
             'name' => __( 'Paramètres' ),
-            'singular_name' => __( 'Paramètres' )
+            'singular_name' => __( 'Paramètre' )
         ],
         'public' => true,
         'has_archive' => true,
@@ -74,7 +65,6 @@ function create_posttypes() {
     ]);
     }
 add_action('init', 'create_posttypes');
-
 
 //Tag programmes
 function progs_tags_taxonomy() {
@@ -94,9 +84,10 @@ function progs_tags_taxonomy() {
 add_action('init', 'progs_tags_taxonomy');
 
 
-//meta champs custom
-//meta champs durée
 
+// champs custom
+
+// méta champ pour la durée du programme
 function ajouter_duree() {
     add_meta_box(
         'duree_programme',
@@ -163,33 +154,11 @@ function sauvegarder_categorie($post_id) {
 }
 add_action('save_post', 'sauvegarder_categorie');
 
-function afficher_duree($post) {
-    $duree_programme_value = get_post_meta($post->ID, 'duree_programme', true);
-    ?>
-    <label for="duree_programme">Durée du programme :</label>
-    <select id="duree_programme" name="duree_programme">
-        <option value="10" <?php selected($duree_programme_value, '10'); ?>>10 minutes</option>
-        <option value="20" <?php selected($duree_programme_value, '20'); ?>>20 minutes</option>
-        <option value="30" <?php selected($duree_programme_value, '30'); ?>>30 minutes</option>
-    </select>
-    <?php
-}
-function sauvegarder_duree($post_id) {
-    if (isset($_POST['duree_programme'])) {
-        update_post_meta(
-            $post_id,
-            'duree_programme',
-            sanitize_text_field($_POST['duree_programme'])
-        );
-    }
-}
-add_action('save_post', 'sauvegarder_duree');
-
-// méta champs vidéo
+// metabox vidéo
 function ajouter_video() {
     add_meta_box(
         'video_programme',
-        'Ajouter une vidéo',
+        'Ajouter une vidéo (embed)',
         'afficher_video',
         'progs',
         'normal',
@@ -248,4 +217,3 @@ function sauvegarder_visuel($post_id) {
     }
 }
 add_action('save_post', 'sauvegarder_visuel');
-
