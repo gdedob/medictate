@@ -1,20 +1,18 @@
 <?php /* Template Name: Medictate */ get_header(); ?>
  
-<?php
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+<?php if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Récupérer les données du formulaire
     $theme = $_POST['theme'];
     $audio = $_POST['audio'];
     $duree = $_POST['duree'];
     $visuel = $_POST['visuel'];
 
-    // Validation des données
+// Validation des données
     if (empty($duree) || empty($theme) || empty($audio) || empty($visuel)) {
         echo "Tous les champs sont requis";
     } else {
         // Création des playlists en fonction des choix. Pas de base de données, donc créé manuellement
-                        $playlists = array(
+            $playlists = array(
                 'stress' => array(
                     'nature' => array(
                         '10' => array('7Vc4-FDGBxo', 'UOAwvnXf8cE', 'tIZpNrr0uX8'),
@@ -67,22 +65,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     )
                 )
              ); ?>
-
-    <?php   // Sélection de la playlist correspondant aux choix de l'utilisateur (cahcune entre crochet, car chacune correspond à un array différent)
+        <?php
+        // Sélection de la playlist correspondant aux choix de l'utilisateur (cahcune entre crochet, car chacune correspond à un array différent)
       $selectedPlaylist = $playlists[$theme][$audio][$duree];
 
     // Mélanger aléatoirement la playlist
     shuffle($selectedPlaylist);
 
     // Récupérer la première vidéo (après le mélange aléatoire)
-    $randomVideoID = $selectedPlaylist[0];  
+    $randomVideoID = $selectedPlaylist[0];    
 
-                // Affichage de la vidéo aléatoire
-    echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $randomVideoID . '" frameborder="0" allowfullscreen></iframe>';
+            // Affichage de la vidéo aléatoire
+            echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $randomVideoID . ' "?autoplay=1" frameborder="0" allow="autoplay; fullscreen"></iframe>';
+        }
     }
-} ?>
 
-<?php // Ajout des carrousels d'images pour chaque choix de 'visuel'
+
+// Partie à travailler
+// Ajout des carrousels d'images pour chaque choix de 'visuel'
 
 // Récupérer le choix de 'visuel' depuis le formulaire
 $selectedVisuel = $_POST['visuel'];
@@ -118,8 +118,7 @@ if (array_key_exists($selectedVisuel, $carousels)) {
     $selectedCarousel = $carousels[$selectedVisuel];
 
     // Affichage du carrousel Bootstrap avec contrôles automatiques
-
-    echo '<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">';
+    echo '<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">'; 
     echo '<div class="carousel-inner">';
     
     // Logique pour activer les images du carrousel une à une
@@ -135,4 +134,5 @@ if (array_key_exists($selectedVisuel, $carousels)) {
     echo '</div>';
     echo '</div>'; 
 } ?>
-<?php get_footer(); ?>
+
+    <?php get_footer(); ?>
