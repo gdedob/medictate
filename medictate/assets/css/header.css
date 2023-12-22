@@ -1,0 +1,80 @@
+/* Header transparent */
+.header {
+    position:fixed;
+    background-color: transparent !important;
+    background-color: #BF6A8C;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.bibi{
+
+    position: fixed;
+}
+
+.bibi{
+    background-color:#F2F2F2 ;
+    width: ;
+    position: fixed;
+    color:red;
+    
+}
+
+
+
+
+
+
+
+/* Logo */
+header img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Styles des liens dans la barre de navigation */
+.navbar-nav .nav-item .nav-link {
+   
+    color: #BF6A8C; /* Couleur par défaut des liens */
+    transition: 0.3s ease; /* Transition pour l'animation */
+    text-decoration: none; /* Retirer soulignement par défaut */
+}
+
+/* Couleur rose pour les liens au survol */
+.navbar-nav .nav-item .nav-link:hover {
+    color: #9e647b; /* Couleur rose + foncé*/
+    text-decoration: underline; /* Soulignement au survol */
+}
+
+
+.userlog{
+
+    background-color: #BF6A8C;
+color:white !important;
+
+}
+
+.userlog:hover{
+
+    background-color: #9e647b;
+color:white !important;
+
+}
+.userlog2{
+
+
+color:#BF6A8C;
+border-color: #BF6A8C !important;
+
+}
+
+.userlog2:hover{
+
+    color: #9e647b !important;;
+
+
+}
