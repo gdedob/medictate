@@ -69,15 +69,35 @@
         // Sélection de la playlist correspondant aux choix de l'utilisateur (cahcune entre crochet, car chacune correspond à un array différent)
       $selectedPlaylist = $playlists[$theme][$audio][$duree];
 
+
+      
     // Mélanger aléatoirement la playlist
     shuffle($selectedPlaylist);
 
     // Récupérer la première vidéo (après le mélange aléatoire)
     $randomVideoID = $selectedPlaylist[0];    
 
-            // Affichage de la vidéo aléatoire
-            echo '<iframe width="560" height="315" src="https://www.youtube.com/embed/' . $randomVideoID . ' "?autoplay=1" frameborder="0" allow="autoplay; fullscreen"></iframe>';
+  
+    echo '<br><br>';
+
+    echo '<div class="playbtn2";>';
+    echo'<p> Clique sur le bouton en dessous de la flèche pour commencer la méditation<p>';
+    echo '<img src="' . get_template_directory_uri() . '/assets/img/ico/btnplay/btnplayrosebas.svg"   alt="play" witdh= "100" height="100" >';
+
+ 
+    echo '</div>';
+
+    echo '<div style="text-align: center;">';
+    echo '<div class="videoyt2";>';
+
+
+    
+    
+            echo '<iframe width="280" height="280" src="https://www.youtube.com/embed/' . $randomVideoID . ' "?autoplay=1" frameborder="0" allow="autoplay; fullscreen">
+                </iframe>';
+                echo '</div>';
         }
+    
     }
 
 
@@ -116,18 +136,20 @@ $selectedVisuel = $_POST['visuel'];
 if (array_key_exists($selectedVisuel, $carousels)) {
 
     $selectedCarousel = $carousels[$selectedVisuel];
-
-    // Affichage du carrousel Bootstrap avec contrôles automatiques
-    echo '<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">'; 
+    
+    // Affichage du carrousel Bootstrap avec contrôles automatique carrouselresponsive
+    echo '<div id="carouselExampleInterval" class="carousel slide img-fluid carrouselresponsive" data-bs-ride="carousel">'; 
     echo '<div class="carousel-inner">';
     
     // Logique pour activer les images du carrousel une à une
     $totalImages = count($selectedCarousel);
     foreach ($selectedCarousel as $key => $image) {
         $active = $key === 0 ? 'active' : ''; // Active seulement la première image au départ
-        
+        echo '<div class="carrouselresponsive";>';
         echo '<div class="carousel-item ' . $active . '">';
         echo '<img src="' . $image . '" class="d-block w-100" alt="Image">';
+        echo '</div>';
+        echo '</div>';
         echo '</div>';
     }
     
@@ -136,3 +158,5 @@ if (array_key_exists($selectedVisuel, $carousels)) {
 } ?>
 
     <?php get_footer(); ?>
+
+    

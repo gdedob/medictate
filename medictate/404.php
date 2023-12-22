@@ -8,6 +8,7 @@
 
             <p>Cette page semble méditer quelque part ailleurs... Retournez à la sérénité de l'accueil</p>
 
+
            <a class=btn-primary  href="<?php echo home_url('/'); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>assets/img/ico/nav/icohome.svg" alt="Icone home" width=250 height=250>
                 </a>

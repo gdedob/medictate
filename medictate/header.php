@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/header.css">
 </head>
 <body <?php body_class(); ?>>
-    <header class="container-fluid bg-light">
-        <nav class="navbar navbar-expand-lg bg-light">
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand mx-auto" href="<?php echo home_url('/'); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo/logo_transp.svg" alt="Logo Medictate" width=200 height=200>
@@ -48,10 +48,13 @@
                     <?php else: ?>
                         <ul class="navbar-nav ms-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo esc_url(home_url('/connexion')); ?>">Connexion</a> <!-- affiche bouton connexion si pas connecté -->
+                                <a class="nav-link userlog btn" href="<?php echo esc_url(home_url('/connexion')); ?>">Connexion</a> <!-- affiche bouton connexion si pas connecté -->
                             </li>
+                            <li class ="">
+                                <p>   <p>
+                    </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="<?php echo esc_url(home_url('/inscription')); ?>">Inscription</a>
+                                <a class="nav-link userlog2 btn" href="<?php echo esc_url(home_url('/inscription')); ?>">Inscription</a>
                             </li>
                         </ul>
                     <?php endif; ?>

@@ -2,7 +2,8 @@
 
 <div class="container mt-5">
     <h1>Contactez-nous</h1>
-    <form action="/envoyer.php" method="post">
+    
+    <form action="<?= home_url('recu'); ?>" method="post">
         <div class="mb-3">
             <label for="nom" class="form-label">Nom :</label>
             <input type="text" class="form-control" id="nom" name="nom" required>
@@ -15,8 +16,12 @@
             <label for="message" class="form-label">Message :</label>
             <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
+        <button type="submit" class="btn oupsi">Envoyer</button>
     </form>
 </div>
+
+<br>
+<br>
+<br>
 
 <?php get_footer(); ?>

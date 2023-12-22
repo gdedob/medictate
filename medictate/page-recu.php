@@ -14,7 +14,7 @@
 <br>
 <div class="container">
     <h1><?= $_POST['nom'] ?>, votre message s'envole vers nous! <br>
-    Nous y répondrons dès que possible</h1>
+    Nous y répondrons dès que possible!</h1>
 
     <br>
     <br>

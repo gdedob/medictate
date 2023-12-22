@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #bf6a8c;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-1" points="750 484.99 1043.01 992.49 1336.02 1500 750 1500 163.98 1500 456.99 992.49 750 484.99"/>
+  <polygon class="cls-1" points="750 1015.01 1043.01 507.51 1336.02 0 750 0 163.98 0 456.99 507.51 750 1015.01"/>
+</svg>

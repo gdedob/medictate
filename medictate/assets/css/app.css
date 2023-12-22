@@ -1,12 +1,245 @@
 
 /*Code de débug seulement */
+/* Ca sert à modifier les éléments bootstrap
+
+
+
+
+/* Notes rajoutées par Arthur le 20 décembre*/
+
+
+
+
+
 
 
 /* Styles généraux pour le corps de la page */
-body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+
+
+@font-face {
+    font-family: 'lexend';
+    src: url('/assets/lexend.ttf') format('truetype');
+    
 }
+
+
+
+body {
+  
+
+    font-family: 'lexend' ;
+
+    line-height: 1.6;
+    background-image:  radial-gradient( circle 500px at 75% 40%,  rgba(191,106,140,0.15) .9%,rgba(242,242,242,0.44) 50.2% ), radial-gradient( circle 1000px at 10% 75%,rgb(98, 132, 104, 0.4) .5%,rgba(242,242,242,0.44) 50.2%  );
+    background-attachment:fixed;
+}
+
+
+
+/*note pour le bouton de la page contact*/
+
+.oupsi{
+
+    background-color: #BF6A8C;
+    color:#F2F2F2;
+}
+/*fin des notes pour la page contact*/
+
+
+
+
+/*Note pour la page création d'ambiance*/
+
+
+.formtheme{
+
+    background-color: #BF6A8C;
+    color: white;
+}
+
+
+
+.formduree{
+
+    background-color: #BF6A8C;
+    color: white;
+    align-self: ;
+}
+
+
+
+.formvisuel{
+
+    background-color: #BF6A8C;
+    color: white;
+}
+
+
+
+
+.formaudio{
+
+    background-color: #BF6A8C;
+    color: white;
+}
+
+/*   background-color: #BF6A8C;
+    color: #F2F2F2;*/
+
+
+
+
+.btnflower:hover{
+    border-color:;
+    background-image:url('/assets/img/ico/audiovisu/icoformes.svg');
+    
+
+
+}
+
+.cliqueici{
+
+
+text-align: center;
+font-size:medium;
+font-weight: medium;
+color: #BF6A8C;
+
+}
+
+
+/*Gestion des élements h1 h2 h3 h4*/
+
+h1{
+
+color: #BF6A8C;
+font-size: 2.5rem;
+font-weight:500;
+
+}
+
+h2{
+
+    color: #BF6A8C;
+    
+    }
+
+
+/*Gestion des élements h1 h2 h3 h4*/
+
+
+/*Note page index*/
+
+.introtitre{
+
+font-size:large;
+
+}
+
+.introleger{
+
+
+    font-weight: lighter;
+}
+
+.introleger2{
+
+
+    font-weight: lighter;
+}
+
+.title-medictate{
+
+
+    color:#BF6A8C;
+    font-size: 5rem;
+}
+
+.intromedi{
+
+
+    font-size: large;
+}
+
+.myfirstbtn{
+
+    background-color: #BF6A8C;
+    color:#F2F2F2;
+
+}
+
+.myfirstbtn:hover{
+
+    background-color:#9e647b;
+    color:#F2F2F2;
+}
+
+
+
+.mybtn{
+
+    
+
+    background-color: #BF6A8C;
+    color: #F2F2F2;
+
+}
+
+
+.introwedictate{
+
+    color: #628468;
+
+
+}
+
+.programmeswede{
+
+    color: #628468;
+    font-size: 5rem;
+
+
+}
+
+
+.mybtnlog{
+
+    
+
+    background-color: #628468;
+    color: #F2F2F2;
+
+}
+
+.mybtnlog:hover{
+
+    
+
+    background-color: #677d6b;
+    color: #F2F2F2;
+
+}
+
+.mybtn:hover{
+
+    background-color:#9e647b;
+    color:#F2F2F2;
+
+
+}
+
+
+.contenuparametre{
+
+color: #BF6A8C;
+text-align: center;
+justify-content: center;
+
+}
+
+/*Fin des notes rajoutées le 20 décembre*/
+
+/*Note page index*/
 
 /* Sections */
 section {
@@ -15,49 +248,197 @@ section {
     text-align: center;
 }
 
-/* Description */
+.title-medictate {
+    display: block;
+}
+/* Description 
 section:nth-of-type(1) {
     background-color: #f8f9fa;
 }
+/* Description 
 
 /* Personnalisation */
-section:nth-of-type(2) {
-    background-color: #e9ecef;
+
+/* affiche valeur sous curseur */
+input[type='range']::after {
+    content: attr(value);
+    position: absolute;
+    top: -30px;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: black;}
+
+
+
+/* CSS pour l'animation de rotation */
+.btn.btn-primary.rotate {
+    animation: rotate 5s linear infinite; /* Définissez votre propre animation ici */
 }
 
-section:nth-of-type(2) iframe {
-    width: 100%;
+
+
+
+
+
+/*section pour la page visualisation de programme de la page Wedictate*/
+
+.zerohate{
+
+
+color:#628468 !important;
+font-size: 2.5rem;
+font-weight:500;
+
 }
 
-section:nth-of-type(2) .btn-primary {
-    display: block;
-    margin-top: 1rem;
+.btnprogram{
+
+
+    background-color: #628468;
+    color: #F2F2F2;
+    
+    
 }
 
-/* Nos programmes */
-section:nth-of-type(3) {
-    background-color: #f8f9fa;
+.btnprogram:hover{
+
+
+    background-color: #677d6b;
+    color: #F2F2F2;
+    
+    
 }
 
-section:nth-of-type(3) img {
-    max-width: 100%;
-    height: auto;
+.btnprogramma{
+
+
+background-color: #628468;
+opacity: 1;
+
+
+
 }
 
-section:nth-of-type(3) .btn-primary {
-    display: block;
-    margin-top: 1rem;
+.btnprogramma2{
+
+
+    color: #628468;
+    background-color: #F2F2F2;
+    
+    
+    }
+
+    .btnprogramma2:hover{
+
+
+        color: #677d6b;
+        background-color: white;
+        
+        
+        }
+
+.programatitre{
+
+    color:#F2F2F2;
+
+
+    
+}
+/*section pour la page visualisation de programme de la page Medictate*/
+
+/* Fin section pour la page visualisation de programme de la page Medictate*/
+.playbtn2{
+
+
+    text-align: center;
+    color: #BF6A8C;
 }
 
-/* S'inscrire */
-section:nth-of-type(4) {
-    background-color: #e9ecef;
+.videoyt2{
+
+
+
+    width: 100;
+    opacity: 0;
+    
+    }
+
+    .videoyt2:hover{
+
+
+   
+        width: 100;
+        opacity: 1;
+        
+        }
+
+
+  
+
+    /*.carrouselresponsive:hover{
+
+
+        opacity: 0;
+    }
+*/
+
+
+    .carrouselresponsive{
+
+
+        min-width: 50%;
+        height: auto; 
+
+    }
+
+/*Fin de la section pour la page visualisation de programme de la page Medictate*/
+
+/*section pour la page visualisation de programme de la page Wedictate*/
+
+.playbtn{
+
+text-align: center;
+color:#628468;
+
 }
 
-section:nth-of-type(4) .btn-primary {
-    display: block;
-    margin-top: 1rem;
+.videoyt{
+
+
+
+width: 100;
+opacity: 0;
+
 }
+
+.videoyt:hover{
+
+
+   
+    width: 100;
+    opacity: 1;
+    
+    }
+
+
+    .carousel{
+
+
+        max-width: 1920px;
+    }
+
+/* fin de la section pour la page visualisation de programme de la page Wedictate*/
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
 
 /* Responsive pour les tablettes */
 @media (min-width: 768px) {
@@ -69,3 +450,9 @@ section:nth-of-type(4) .btn-primary {
         padding: 30px;
     }
 }
+
+main.padding-container {
+    padding-top: 100px;
+}
+
+

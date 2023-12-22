@@ -33,6 +33,11 @@ if ($progs_query->have_posts()) {
 }
 
 ?>
+<div class="container mt-4 zerohate">
+ 
+        <p>Wedictate</p>
+ 
+</div>
 
 <section class="container mt-5">
     <form method="get" class="row g-3">
@@ -73,7 +78,7 @@ if ($progs_query->have_posts()) {
         <?php endforeach; ?>
 
         <div class="col-md-12">
-            <input type="submit" value="Filtrer" class="btn btn-primary">
+            <input type="submit" value="Filtrer" class="btn btnprogram">
         </div>
     </form>
 </section>
@@ -109,15 +114,26 @@ $programmesList = new WP_Query($args);
     <div class="row">
         <?php while ($programmesList->have_posts()) : $programmesList->the_post(); ?>
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="card btnprogramma">
                     <div class="card-body">
-                        <h5 class="card-title"><?php the_title(); ?></h5>
-                        <a href="<?php the_permalink(); ?>" class="btn btn-primary">Découvrir le programme</a>
+                        <br>
+                        <h5 class="card-title programatitre"><?php the_title(); ?></h5>
+
+                        <br><br>
+                        <a href="<?php the_permalink(); ?>" class="btn btnprogramma2">Découvrir le programme</a>
                     </div>
-                </div>
+
+                    <br>
+
+</div>
             </div>
+            
         <?php endwhile; ?>
     </div>
+
+    <br><br>
+
+    <p class= "herorecomethesun"> L’équipe de Medictate a méticuleusement conçu ces ambiances avec une attention particulière, afin de vous offrir une expérience de méditation soigneusement élaborée</p>
 </section>
 
 <?php get_footer(); ?>

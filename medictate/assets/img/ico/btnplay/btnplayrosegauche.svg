@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 1500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #bf6a8c;
+        opacity: .5;
+      }
+    </style>
+  </defs>
+  <polygon class="cls-1" points="-7.91 750 670.96 358.06 670.96 1141.94 -7.91 750"/>
+  <rect class="cls-1" x="923.88" y="331.53" width="331.09" height="836.95" transform="translate(1839.43 -339.43) rotate(90)"/>
+</svg>

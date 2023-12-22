@@ -13,10 +13,31 @@ get_header();
         // Récupérer méta-informations de l'article
         $video = get_post_meta($current_post_id, 'video_programme', true);
 
-        // Afficher la vidéo si la méta-information est disponible
-        if ($video) {
-            echo '<iframe width="560" height="315" src="' . esc_url($video) . '" frameborder="0" allowfullscreen></iframe>';
+        echo '<br><br>';
 
+        echo '<div class="playbtn";>';
+        echo'<p> Clique sur le bouton en dessous de la flèche pour commencer la méditation<p>';
+        echo '<img src="' . get_template_directory_uri() . '/assets/img/ico/btnplay/btnplayvertbas.svg"   alt="play" witdh= "100" height="100" >';
+
+     
+        echo '</div>';
+       
+
+        // Afficher la vidéo si la méta-information est disponible
+    //centrer la vidéo + opacité
+
+        echo '<div style="text-align: center;">';
+        echo '<div class="videoyt";>';
+       
+        if ($video) {
+
+           
+
+            echo '<iframe width="280" height="280"  src="'  . esc_url($video) .  '" frameborder="0" allowfullscreen></iframe> ';
+
+            
+            echo '</div>';
+            
             // Récupérer la valeur du champ "visuel" pour cet article
             $selected_visuel = get_post_meta($current_post_id, 'visuel_programme', true);
 
@@ -81,5 +102,8 @@ get_header();
     }
     ?>
 </div>
+
+
+<br><br><br><br><br><br>
 
 <?php get_footer(); ?>
